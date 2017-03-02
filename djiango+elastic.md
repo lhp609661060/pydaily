@@ -15,6 +15,7 @@
 1. 启动（elasticsearch） 切换到elasticsearch安装目录 运行bin/elasticsearch
 2. 启动（kibana）切换到kibana安装目录运行bin/kibana
 3. 启动（Logstash）
+
 * 切换到安装目录 在 config 新建 mylogstash.conf
 * 内容如下
 
@@ -27,6 +28,7 @@
           password => changeme
        }
     }  
+    
     
 * 在安装目录下运行 bin/logstash -f config/mylogstash.conf 
 
