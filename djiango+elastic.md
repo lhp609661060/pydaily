@@ -31,4 +31,4 @@
            
     * 在安装目录下运行 bin/logstash -f config/mylogstash.conf 
 
-4. 访问http://localhost:5601 用户名：elastic，密码：changeme
+4. 访问[http://localhost:5601](http://localhost:5601) 用户名：elastic，密码：changeme
