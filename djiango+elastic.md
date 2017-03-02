@@ -2,6 +2,7 @@
 
 ###安装
 参考：https://www.elastic.co/start
+
 1. 安装Elasticsearch
 2. 安装Kibana
 3. 安装X-Pack
@@ -26,6 +27,7 @@
           password => changeme
        }
     }  
+    
 * 在安装目录下运行 bin/logstash -f config/mylogstash.conf 
 
 4. 访问http://localhost:5601 用户名：elastic，密码：changeme
