@@ -19,14 +19,14 @@
     * 切换到安装目录 在 config 新建 mylogstash.conf
     * 内容如下
 
-        input { stdin {}}
-        output {
-           elasticsearch {
-              hosts => ["localhost:9200"]
-              user => elastic
-              password => changeme
-           }
-        }  
+    input { stdin {}}
+    output {
+       elasticsearch {
+          hosts => ["localhost:9200"]
+          user => elastic
+          password => changeme
+       }
+    }  
     
     * 在安装目录下运行 bin/logstash -f config/mylogstash.conf 
 
