@@ -1,6 +1,8 @@
 # coding=utf8
-__author__ = 'lhp'
-"""输出zip文件"""
+
+"""
+django 输出zip文件
+"""
 
 import tempfile
 import zipfile
