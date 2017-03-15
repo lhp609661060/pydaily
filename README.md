@@ -71,3 +71,35 @@
             return _callback
     
         return _fn
+        
+##4、性能测试函数
+
+    
+    import time
+
+    def timer(func):
+        def wrapper(*args, **kwargs):
+            t1 = time.time()
+            result = func(*args, **kwargs)
+            t2 = time.time()
+            print func.__name__, t2 - t1
+            return result
+    
+        return wrapper
+
+    class Timer:
+        def __init__(self, name=None):
+            self._name = name
+    
+        def __enter__(self):
+            self._start = time.time()
+    
+        def __exit__(self, exc_type, exc_val, exc_tb):
+            self._end = time.time()
+            
+    >>>@timer
+       def test():
+           print 123
+           
+    >>>with Timer('name'):
+           code ...
