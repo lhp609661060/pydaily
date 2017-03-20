@@ -103,7 +103,6 @@
            
     >>>with Timer('name'):
            code ...
-<<<<<<< HEAD
            
            
 ## excel 读取
@@ -151,5 +150,3 @@
                 row_data = [self.get_unicode(v) for v in self.sheet.row_values(i)]
                 if not self.__row_is_empty(row_data): continue
                 yield dict(zip(title, row_data))
-=======
->>>>>>> 7a79badc60b0c52ee9b47e7149e90cf6b5792c05
