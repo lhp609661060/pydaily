@@ -1,6 +1,6 @@
-#python 日常
+# python 日常
 
-##1、简易线程
+## 1、简易线程
 启动一个不相关的任务，并且不需要关心结果。
     
     import threading
@@ -14,7 +14,7 @@
             
         return _fn
         
-##2、本地缓存
+## 2、本地缓存
 把数据存储到本地内存中，可以用于加载一些常用全局变量
 
     def cache_func(f, *a, **b):
@@ -43,7 +43,7 @@
     
         return _fn
         
-##3、redis缓存
+## 3、redis缓存
 简易缓存数据
 
     def cache_as(time_out=None):
@@ -72,7 +72,7 @@
     
         return _fn
         
-##4、性能测试函数
+## 4、性能测试函数
 
     
     import time
@@ -103,6 +103,7 @@
            
     >>>with Timer('name'):
            code ...
+<<<<<<< HEAD
            
            
 ## excel 读取
@@ -150,3 +151,5 @@
                 row_data = [self.get_unicode(v) for v in self.sheet.row_values(i)]
                 if not self.__row_is_empty(row_data): continue
                 yield dict(zip(title, row_data))
+=======
+>>>>>>> 7a79badc60b0c52ee9b47e7149e90cf6b5792c05
