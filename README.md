@@ -103,3 +103,50 @@
            
     >>>with Timer('name'):
            code ...
+           
+           
+## excel 读取
+解析excel数据toJson
+
+    class ExcelSheet(object):
+
+        def __init__(self, sheet):
+            self.sheet = sheet
+            self.__datas = []
+    
+        def get_title(self):
+            return []
+    
+        def start_row(self):
+            return 1
+    
+        def __row_is_empty(self, datas):
+            emptys = (None, '')
+            for v in datas:
+                if v not in emptys:
+                    return True
+            return False
+    
+        @property
+        def sheet_datas(self):
+            if self.__datas:
+                return self.__datas
+    
+            self.__datas = [x for x in self.iter_sheet_datas]
+            return self.__datas
+    
+        def get_unicode(self,value):
+            if isinstance(value, (unicode, str)):
+                return value.strip().replace('\n', '')
+            if isinstance(value, float) and value % 1 == 0:
+                value = int(value)
+                return value
+            return value
+    
+        @property
+        def iter_sheet_datas(self):
+            title = self.get_title()
+            for i in xrange(self.start_row(), self.sheet.nrows):
+                row_data = [self.get_unicode(v) for v in self.sheet.row_values(i)]
+                if not self.__row_is_empty(row_data): continue
+                yield dict(zip(title, row_data))
