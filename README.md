@@ -103,7 +103,6 @@
            
     >>>with Timer('name'):
            code ...
-<<<<<<< HEAD
            
            
 ## excel 读取
@@ -151,5 +150,69 @@
                 row_data = [self.get_unicode(v) for v in self.sheet.row_values(i)]
                 if not self.__row_is_empty(row_data): continue
                 yield dict(zip(title, row_data))
-=======
->>>>>>> 7a79badc60b0c52ee9b47e7149e90cf6b5792c05
+                
+           
+## 类型强制转换
+方便进行数据运算
+
+    import base64
+    import datetime
+    import json
+    
+    class CT(object):
+        """
+        强制类型转换工具
+        """
+    
+        def __init__(self,val=None):
+            self.val = val
+    
+        def __float__(self):
+            if not self.val: return 0.0
+            return self.__to_type(float,self.val,0.0)
+    
+        def __trunc__(self):
+            if not self.val: return 0
+            return self.__to_type(int,self.val,0)
+    
+        def __int__(self):
+            if not self.val: return 0
+            return self.__to_type(int,self.val,0)
+    
+        def __str__(self):
+            if not self.val: return ''
+            return self.__to_type(str,self.val,'')
+    
+        def __to_type(self,fn,val,default=None):
+            try: 
+                return fn(val)
+            except Exception, e: 
+                return default
+    
+        def toString(self):
+            return unicode(self.val)
+    
+        def toJson(self, fn):
+            return json.loads(self.val)
+    
+        def toJsonString(self):
+            pass
+    
+        def toDate(self):
+            pass
+    
+        def toInt(self):
+            pass
+    
+        def toFloat(self):
+            pass
+    
+        def toBool(self):
+            pass
+    
+        def toBate(self):
+            pass
+    
+        def toBase64(self):
+            pass
+
