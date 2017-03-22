@@ -150,6 +150,7 @@
                 row_data = [self.get_unicode(v) for v in self.sheet.row_values(i)]
                 if not self.__row_is_empty(row_data): continue
                 yield dict(zip(title, row_data))
+<<<<<<< HEAD
                 
            
 ## 类型强制转换
@@ -216,3 +217,5 @@
         def toBase64(self):
             pass
 
+=======
+>>>>>>> 40379765a48fe9561db76d75d65afb60679858fc
