@@ -150,7 +150,7 @@
                 row_data = [self.get_unicode(v) for v in self.sheet.row_values(i)]
                 if not self.__row_is_empty(row_data): continue
                 yield dict(zip(title, row_data))
-<<<<<<< HEAD
+
                 
            
 ## 类型强制转换
@@ -217,5 +217,42 @@
         def toBase64(self):
             pass
 
-=======
->>>>>>> 40379765a48fe9561db76d75d65afb60679858fc
+
+## 惰性应用
+应当于一个对象的惰性加载
+
+    class Lazy(object):
+        __data = {}
+    
+        def __init__(self, obj):
+            self.__obj = obj
+    
+    
+        def __getattr__(self, name):
+            fn = getattr(self.__obj, name)
+            if hasattr(fn, '__call__'):
+                def _f(*a, **b):
+                    key = (name, a, tuple(b.items()))
+                    if key in self.__data:
+                        return self.__data[key]
+    
+                    r = fn(*a, **b)
+                    self.__data[key] = r
+                    return self.__data[key]
+    
+                return _f
+            
+    >>> class Test(object):
+            
+            def hello(self):
+                print 'hello'
+                return 0
+                
+    >>> t = Lazy(Test())
+    >>> t.hello()
+    hello
+    0
+    >>> t.hello()
+    0
+    >>> t.hello()
+    0
