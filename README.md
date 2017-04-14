@@ -293,3 +293,21 @@
             browser.find_element_by_xpath('//a[@class="btn2"]').click()
             time.sleep(10)
             browser.close()
+            
+## pandas 简单使用
+使用pandas 比对数据差异
+
+    import pandas as pd
+    
+    mytable = pd.read_excel('mytable.xls') # 读取本地数据
+    jrtable = pd.read_excel('jrtable.xls') # 读取验证数据
+    
+    mytable_dd = mytable[mytable[u'产品名称']==u'订单融资'] #挑出自己的数据 相当与filter
+    jrtable_dd = jrtable[jrtable[u'产品名称']==u'订单融资'] #挑出目标数据 相当与filter
+    
+    aa = mytable_dd[[u'金融订单号','amount']].groupby(u'金融订单号').sum() #去重 =groupby
+    bb = jrtable_dd[[u'融资订单号',u'融资放款额']].groupby(u'融资订单号').sum() #去重 =groupby
+    
+    aa.to_dict()
+    bb.to_dict()
+    
