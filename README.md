@@ -256,3 +256,40 @@
     0
     >>> t.hello()
     0
+    
+    
+## requests 使用代理抓取数据
+通过代理ip来完成"千锋教育"优惠页面ip收集任务
+
+    # conding=utf-8
+
+    import requests 
+    from selenium import webdriver
+    import time
+    
+    class Ip(object):
+        def __init__(self):
+            for ip in self.ips():
+                try:
+                    self.open_d(ip)
+                except Exception as e:
+                    print e
+    
+    
+        def ips(self):
+            r = requests.get('http://api.zdaye.com/?api=201704131532443528&rtype=1&ct=200').text.split('\n')
+            return [_.replace('\r', '') for _ in r]
+    
+        def open_d(self, ip):
+            print ip, '='*30
+            browser=webdriver.PhantomJS()
+    
+            proxy=webdriver.Proxy()
+            proxy.http_proxy=ip
+            proxy.add_to_capabilities(webdriver.DesiredCapabilities.PHANTOMJS)
+            browser.start_session(webdriver.DesiredCapabilities.PHANTOMJS)
+            browser.set_page_load_timeout(20)
+            browser.get('http://www.mobiletrain.org/jiip/?url_code=K1XCb1WN')
+            browser.find_element_by_xpath('//a[@class="btn2"]').click()
+            time.sleep(10)
+            browser.close()
